@@ -220,6 +220,10 @@ CLEAN += bigdict
 bigdict: CFLAGS += $(MULTITHREAD)
 bigdict: $(ZSTDMT_OBJECTS) $(PRGDIR)/datagen.c bigdict.c
 
+CLEAN += zeroInput
+zeroInput: CFLAGS += $(MULTITHREAD)
+zeroInput : $(ZSTDMT_OBJECTS) $(ZSTDDIR)/zstd.h
+
 CLEAN += invalidDictionaries
 invalidDictionaries : $(ZSTD_OBJECTS) invalidDictionaries.c
 
@@ -246,6 +250,8 @@ automated_benchmarking: clean
 # make checkTag : check that release tag corresponds to release version
 CLEAN += checkTag
 checkTag.o : $(ZSTDDIR)/zstd.h
+
+
 
 .PHONY: clean
 clean:
